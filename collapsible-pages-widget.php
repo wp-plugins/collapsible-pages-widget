@@ -3,7 +3,7 @@
  * Plugin Name: Collapsible Pages Widget
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the plugin.
- * Version: 0.2.0
+ * Version: 1.0.1
  * Author: Adam Schønemann
  * Author URI: http://URI_Of_The_Plugin_Author
  * License: GPL2
@@ -120,7 +120,8 @@ class CollapsiblePagesWidget extends WP_Widget
 		foreach ($pages as $page) {
 
 			$li = new Node('li', array(
-				'class' => array('page_item', 'page-item-' . $page->ID)
+				'class' => array('page_item', 'page-item-' . $page->ID),
+				'data-page-id' => $page->ID
 			));
 			$ul->addChild($li);
 			$toggle_item = new Node('div', array('class' => 'toggle-item'));

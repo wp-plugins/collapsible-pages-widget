@@ -28,10 +28,10 @@
 function expand_to_page(id){
 	(function($){
 		var li = $(".widget_collapsible_pages_widget [data-page-id='" + id + "']");
-		var parent = li.parent("ul.hidden");
+		var parent = li.parent("ul.children");
 		while(parent.length > 0) {
-			parent.siblings(".toggle").click()
-			parent = parent.parent().parent("ul.hidden");
+			parent.siblings('.toggle-item').children('.icon-plus').click();
+			parent = parent.parent().parent("ul.children");
 		}
 
 	})(jQuery);
