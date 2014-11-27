@@ -1,0 +1,45 @@
+
+.widget_collapsible_pages_widget ul.hidden {
+	display: none;
+}
+
+
+.widget_collapsible_pages_widget .toggle-item {
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+}
+
+.widget_collapsible_pages_widget .toggle {
+	cursor: pointer;
+}
+
+.widget_collapsible_pages_widget ul.children {
+	padding-left: 1.3em;
+}
+
+.widget_collapsible_pages_widget li.page_item_has_children {
+
+}
+
+.widget_collapsible_pages_widget li {
+	border-bottom: 1px solid #e4e4e4;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+}
+
+.widget_collapsible_pages_widget li:last-child {
+	border-bottom: none;
+}
+
+.widget_collapsible_pages_widget .icon-plus {
+	fill: red;
+	/*background-image: url("images/icon-plus.svg");*/
+}
+
+
+.widget_collapsible_pages_widget .icon-minus {
+	fill: red;
+	/*background-image: url("images/icon-minus.svg");*/
+}
+
