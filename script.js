@@ -1,18 +1,24 @@
 
 (function($){
 	$(function(){
-		$(".widget_collapsible_pages_widget .toggle").click(function(evt){
+		$(".widget_collapsible_pages_widget .icon-plus").click(function(evt){
 			console.log("clicked");
 			var target = $(evt.currentTarget);
 
-			target.siblings("ul.hidden").toggle(200);
-			var oldSrc = target.attr('src');
-			var newSrc = oldSrc.indexOf('icon-plus') > -1 ? oldSrc.replace('icon-plus', 'icon-minus') :
-														oldSrc.replace('icon-minus', 'icon-plus') ;
-			target.attr('src', newSrc);
+			target.parent().siblings("ul.children").show(200);
+			target.hide();
+			target.siblings('.icon-minus').show();
 
-			target.toggleClass("icon-plus");
-			target.toggleClass("icon-minus");
+		});
+
+		$(".widget_collapsible_pages_widget .icon-minus").click(function(evt){
+			console.log("clicked");
+			var target = $(evt.currentTarget);
+
+			target.parent().siblings("ul.children").hide(200);
+			target.hide();
+			target.siblings('.icon-plus').show();
+
 		});
 		$(document).trigger("collapsible_pages_ready");
     });

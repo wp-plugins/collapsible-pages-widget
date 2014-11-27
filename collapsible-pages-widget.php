@@ -38,7 +38,11 @@ class CollapsiblePagesWidget extends WP_Widget
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
 		}
 		$pages = $this->get_pages_recursive(0, array('post_title'));
-		echo $this->print_pages_recursive($pages, array('show_threshold' => 0))->toHtml(true);
+		echo $this->print_pages_recursive($pages, array(
+				'show_threshold' => 0,
+				'color' => $instance['color']
+			)
+		)->toHtml(true);
 		echo '
 			<script>
 				jQuery(document).on("collapsible_pages_ready",function(){
@@ -56,15 +60,15 @@ class CollapsiblePagesWidget extends WP_Widget
 	 * @param array $instance The widget options
 	 */
 	public function form($instance) {
-		if ( isset( $instance[ 'title' ] ) ) {
-			$title = $instance[ 'title' ];
-		} else {
-			$title = 'New title';
-		}
+		$title = isset($instance['title']) ? $instance['title'] : "New title";
+		$color = isset($instance['color']) ? $instance['color'] : '#fff';
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php echo 'Title:'; ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+
+			<label for="<?php echo $this->get_field_id( 'color' ); ?>"><?php echo 'Color:'; ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'color' ); ?>" name="<?php echo $this->get_field_name( 'color' ); ?>" type="text" value="<?php echo esc_attr( $color ); ?>">
 		</p>
 		<?php
 	}
@@ -81,7 +85,8 @@ class CollapsiblePagesWidget extends WP_Widget
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
+		$instance['color'] = (!empty($new_instance['color'])) ? strip_tags($new_instance['color']) : '';
 
 		return $instance;
 	}
@@ -118,8 +123,8 @@ class CollapsiblePagesWidget extends WP_Widget
 				'class' => array('page_item', 'page-item-' . $page->ID)
 			));
 			$ul->addChild($li);
-			$img = new Node('img', array('class' => 'toggle-item'));
-			$li->addChild($img);
+			$toggle_item = new Node('div', array('class' => 'toggle-item'));
+			$li->addChild($toggle_item);
 			$a = new Node('a', array(
 					'href' => get_page_link($page->ID)
 				)
@@ -128,13 +133,23 @@ class CollapsiblePagesWidget extends WP_Widget
 			$li->addChild($a);
 			if(isset($page->children)) {
 				$li->addClass('page_item_has_children');
-				$img->addClass('toggle icon-plus');
-				$img->addAttribute('src', plugin_dir_url(__FILE__) . 'images/icon-plus.svg');
+
+				$plus_svg = new Node('svg', array('class' => 'toggle icon-plus'));
+				$plus_svg->addText('
+					<rect rx="1" id="svg_2" height="25%" width="100%" y="37.5%" x="0%" fill="' . $options['color'] . '"/>
+					<rect rx="1" id="svg_3" height="100%" width="25%" y="0%" x="37.5%"  fill="' . $options['color'] . '"/>
+				');
+				$minus_svg = new Node('svg', array('class' => 'toggle icon-minus hidden'));
+				$minus_svg->addText('
+					<rect rx="1" id="svg_1" height="25%" width="100%" y="37.5%" x="0%" fill="' . $options['color'] . '" />
+				');
+
+				$toggle_item->addChild($plus_svg);
+				$toggle_item->addChild($minus_svg);
+
 				$childUl = $this->print_pages_recursive($page->children, $options, $level + 1);
 				$childUl->addClass('children');
 				$li->addChild($childUl);
-			} else {
-				$img->addAttribute('style', 'visibility:hidden;');
 			}
 		}
 

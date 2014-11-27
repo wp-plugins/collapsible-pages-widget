@@ -8,6 +8,8 @@
 	width: 1em;
 	height: 1em;
 	display: inline-block;
+	top: 2px;
+	position: relative;
 }
 
 .widget_collapsible_pages_widget .toggle {
@@ -32,14 +34,13 @@
 	border-bottom: none;
 }
 
-.widget_collapsible_pages_widget .icon-plus {
-	fill: red;
-	/*background-image: url("images/icon-plus.svg");*/
+
+.widget_collapsible_pages_widget svg {
+	width: 100%;
+	height: 100%;
+	display: inline;
 }
 
-
-.widget_collapsible_pages_widget .icon-minus {
-	fill: red;
-	/*background-image: url("images/icon-minus.svg");*/
+.widget_collapsible_pages_widget .hidden {
+	display: none;
 }
-
