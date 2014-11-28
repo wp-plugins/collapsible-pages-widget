@@ -3,7 +3,7 @@
  * Plugin Name: Collapsible Pages Widget
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the plugin.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Adam Schønemann
  * Author URI: http://URI_Of_The_Plugin_Author
  * License: GPL2
@@ -96,7 +96,7 @@ class CollapsiblePagesWidget extends WP_Widget
 		global $wpdb;
 		$colstring = implode($columns, ',');
 		$pages = $wpdb->get_results(
-			"SELECT ID, " . $colstring . " FROM wp_posts WHERE post_type='page' AND post_parent={$id}"
+			"SELECT ID, " . $colstring . " FROM $wpdb->posts WHERE post_type='page' AND post_parent={$id}"
 		);
 		return $pages;
 	}
