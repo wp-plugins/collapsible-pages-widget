@@ -10,6 +10,7 @@
 	display: inline-block;
 	top: 2px;
 	position: relative;
+	margin-right: 1em;
 }
 
 .widget_collapsible_pages_widget .toggle {
@@ -18,10 +19,6 @@
 
 .widget_collapsible_pages_widget ul.children {
 	padding-left: 1.3em;
-}
-
-.widget_collapsible_pages_widget li.page_item_has_children {
-
 }
 
 .widget_collapsible_pages_widget li {

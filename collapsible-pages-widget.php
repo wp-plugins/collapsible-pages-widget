@@ -3,7 +3,7 @@
  * Plugin Name: Collapsible Pages Widget
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the plugin.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Adam Schønemann
  * Author URI: http://URI_Of_The_Plugin_Author
  * License: GPL2
