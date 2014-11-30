@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Collapsible Pages Widget
- * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+ * Plugin URI: https://github.com/adamschoenemann/collapsible-pages-widget
  * Description: A brief description of the plugin.
  * Version: 1.0.4
  * Author: Adam Schønemann
- * Author URI: http://URI_Of_The_Plugin_Author
+ * Author URI: https://github.com/adamschoenemann/
  * License: GPL2
  */
 
@@ -83,7 +83,7 @@ class CollapsiblePagesWidget extends WP_Widget
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
-	public function update( $new_instance, $old_instance ) {
+	public function update($new_instance, $old_instance) {
 		$instance = array();
 		$instance['title'] = (!empty($new_instance['title'])) ? strip_tags($new_instance['title']) : '';
 		$instance['color'] = (!empty($new_instance['color'])) ? strip_tags($new_instance['color']) : '';
