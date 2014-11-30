@@ -3,11 +3,8 @@
  * Plugin Name: Collapsible Pages Widget
  * Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
  * Description: A brief description of the plugin.
-<<<<<<< HEAD
  * Version: 1.0.2
-=======
  * Version: 1.0.1
->>>>>>> d54f1a4f78b2b880ef445f53306b807bf36302b3
  * Author: Adam Schønemann
  * Author URI: http://URI_Of_The_Plugin_Author
  * License: GPL2
@@ -99,9 +96,13 @@ class CollapsiblePagesWidget extends WP_Widget
 	private function get_pages_with_parent($id, $columns = array()) {
 		global $wpdb;
 		$colstring = implode($columns, ',');
-		$pages = $wpdb->get_results(
-			"SELECT ID, " . $colstring . " FROM $wpdb->posts WHERE post_type='page' AND post_parent={$id}"
-		);
+		$pages = get_pages(array(
+			'parent' => $id
+		));
+		// print_r($pages);
+		// $pages = $wpdb->get_results(
+		// 	"SELECT ID, " . $colstring . " FROM $wpdb->posts WHERE post_type='page' AND post_parent={$id}"
+		// );
 		return $pages;
 	}
 
@@ -159,43 +160,6 @@ class CollapsiblePagesWidget extends WP_Widget
 		}
 
 		return $ul;
-
-		/*
-		$ulClasses = array();
-		if($level > $options["show_threshold"])
-			$ulClasses[] = 'hidden';
-		if($level > 0)
-			$ulClasses[] = 'children';
-
-		$out = array('<ul class="' . implode($ulClasses, ' ') . '">');
-		foreach ($pages as $page) {
-			$hasChildren = ($page->children !== null ? true : false);
-			$liClasses = array("page_item", "page-item-" . $page->ID);
-			if($hasChildren) $liClasses[] = 'page_item_has_children';
-			$out[] = '<li class="' . implode($liClasses, ' ') . '" data-page-id="' . $page->ID . '">';
-			$out[] = '<img ';
-			$imgClasses = array('toggle-item');
-			if ($hasChildren) {
-				$imgClasses[] = 'toggle icon-plus';
-				$out[] = 'src="' . plugin_dir_url(__FILE__) . 'images/icon-plus.svg" ';
-			} else {
-				$out[] = 'style="visibility:hidden" ';
-			}
-
-			$out[] = 'class="' . implode($imgClasses, ' ');
-			$out[] = '">';
-			$out[] = '</img>';
-
-			$out[] = '<a href="' . get_page_link($page->ID) . '">' . $page->post_title . '</a>';
-			if($hasChildren) {
-				// $out[] = '<span class="toggle-plus toggle"></span>';
-				$out[] = $this->print_pages_recursive($page->children, $options, $level + 1);
-			}
-			$out[] = "</li>";
-		}
-		$out[] = "</ul>";
-		return implode($out, '');
-		*/
 	}
 
 }

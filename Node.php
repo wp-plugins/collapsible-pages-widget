@@ -16,7 +16,7 @@ class Attribute
 
 	public function add($vals)
 	{
-		if(is_string($vals))
+		if(is_scalar($vals))
 		{
 			$this->vals = array_merge($this->vals, array_map('trim', explode(' ', $vals)));
 		}
@@ -32,7 +32,7 @@ class Attribute
 
 	public function set($vals)
 	{
-		if(is_string($vals))
+		if(is_scalar($vals))
 		{
 			$this->vals = explode(' ', $vals);
 		}
@@ -42,7 +42,7 @@ class Attribute
 		}
 		else
 		{
-			throw new Exception('Invalid vals $vals');
+			throw new Exception("Invalid vals $vals");
 		}
 
 		$this->vals = array_map('trim', $this->vals);

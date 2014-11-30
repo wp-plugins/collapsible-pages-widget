@@ -2,7 +2,7 @@
 Contributors: adamschoenemann
 Tags: pages, collapsible, nested, fold, folding, hierarchical, widget
 Requires at least: 3.0.1
-Stable Tag: 1.0.2
+Stable Tag: 1.0.3
 Tested up to: 4.0.1
 License: GPLv2 or later
 
