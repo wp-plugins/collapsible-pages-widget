@@ -5,9 +5,9 @@
 			console.log("clicked");
 			var target = $(evt.currentTarget);
 
-			target.parent().siblings("ul.children").show(200);
+			target.parent().siblings("ul.children").removeClass("hidden").show(200);
 			target.hide();
-			target.siblings('.icon-minus').show();
+			target.siblings('.icon-minus').removeClass("hidden").show();
 
 		});
 
@@ -15,9 +15,9 @@
 			console.log("clicked");
 			var target = $(evt.currentTarget);
 
-			target.parent().siblings("ul.children").hide(200);
+			target.parent().siblings("ul.children").addClass("hidden").hide(200);
 			target.hide();
-			target.siblings('.icon-plus').show();
+			target.siblings('.icon-plus').removeClass("hidden").show();
 
 		});
 		$(document).trigger("collapsible_pages_ready");

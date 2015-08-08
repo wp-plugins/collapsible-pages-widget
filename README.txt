@@ -2,8 +2,8 @@
 Contributors: adamschoenemann
 Tags: pages, collapsible, nested, fold, folding, hierarchical, widget
 Requires at least: 3.0.1
-Stable Tag: 1.0.5
-Tested up to: 4.0.1
+Stable Tag: 1.0.6
+Tested up to: 4.3
 License: GPLv2 or later
 
 Wordpress plugin that provides a widget that lists pages in a collapsible list

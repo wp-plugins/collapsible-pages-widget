@@ -139,18 +139,23 @@ class CollapsiblePagesWidget extends WP_Widget
 			if(isset($page->children)) {
 				$li->addClass('page_item_has_children');
 
-				$plus_svg = new Node('svg', array('class' => 'toggle icon-plus'));
+				$plus_toggle = new Node('span', array('class' => 'toggle icon-plus'));
+				$plus_svg = new Node('svg');
 				$plus_svg->addText('
 					<rect rx="1" id="svg_2" height="25%" width="100%" y="37.5%" x="0%" fill="' . $options['color'] . '"/>
 					<rect rx="1" id="svg_3" height="100%" width="25%" y="0%" x="37.5%"  fill="' . $options['color'] . '"/>
 				');
-				$minus_svg = new Node('svg', array('class' => 'toggle icon-minus hidden'));
+				$plus_toggle->addChild($plus_svg);
+
+				$minus_toggle = new Node('span', array('class' => 'toggle icon-minus hidden'));
+				$minus_svg = new Node('svg');
 				$minus_svg->addText('
 					<rect rx="1" id="svg_1" height="25%" width="100%" y="37.5%" x="0%" fill="' . $options['color'] . '" />
 				');
+				$minus_toggle->addChild($minus_svg);
 
-				$toggle_item->addChild($plus_svg);
-				$toggle_item->addChild($minus_svg);
+				$toggle_item->addChild($plus_toggle);
+				$toggle_item->addChild($minus_toggle);
 
 				$childUl = $this->print_pages_recursive($page->children, $options, $level + 1);
 				$childUl->addClass('children');
